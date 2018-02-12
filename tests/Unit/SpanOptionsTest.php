@@ -2,7 +2,6 @@
 
 namespace OpenTracingTests\Unit;
 
-use OpenTracing\Exceptions\InvalidSpanOption;
 use OpenTracing\NoopSpanContext;
 use OpenTracing\SpanOptions;
 use OpenTracing\Reference;
@@ -15,28 +14,31 @@ final class SpanOptionsTest extends PHPUnit_Framework_TestCase
 {
     const REFERENCE_TYPE = 'a_reference_type';
 
+    /**
+     * @expectedException \OpenTracing\Exceptions\InvalidSpanOption
+     */
     public function testSpanOptionsCanNotBeCreatedDueToInvalidOption()
     {
-        $this->expectException(InvalidSpanOption::class);
-
         SpanOptions::create([
             'unknown_option' => 'value'
         ]);
     }
 
+    /**
+     * @expectedException \OpenTracing\Exceptions\InvalidSpanOption
+     */
     public function testSpanOptionsWithInvalidCloseOnFinishOption()
     {
-        $this->expectException(InvalidSpanOption::class);
-
         SpanOptions::create([
             'close_span_on_finish' => 'value'
         ]);
     }
 
+    /**
+     * @expectedException \OpenTracing\Exceptions\InvalidSpanOption
+     */
     public function testSpanOptionsCanNotBeCreatedBecauseInvalidStartTime()
     {
-        $this->expectException(InvalidSpanOption::class);
-
         SpanOptions::create([
             'start_time' => 'abc'
         ]);
