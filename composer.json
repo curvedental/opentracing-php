@@ -1,5 +1,5 @@
 {
-    "name": "opentracing/opentracing",
+    "name": "curvedental/opentracing",
     "description": "OpenTracing API for PHP",
     "type": "library",
     "license": "MIT",
