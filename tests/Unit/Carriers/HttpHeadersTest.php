@@ -11,11 +11,11 @@ use PHPUnit_Framework_TestCase;
  */
 final class HttpHeadersTest extends PHPUnit_Framework_TestCase
 {
-    const TEST_HEADERS = ['foo' => 'bar'];
+    public static $TEST_HEADERS = array('foo' => 'bar');
 
     public function testCreationWithHeadersHasTheExpectedValues()
     {
-        $headers = self::TEST_HEADERS;
+        $headers = self::$TEST_HEADERS;
         $httpHeaders = HttpHeaders::fromHeaders($headers);
 
         foreach ($httpHeaders as $key => $value) {
@@ -26,7 +26,7 @@ final class HttpHeadersTest extends PHPUnit_Framework_TestCase
 
     public function testCreationFromRequestHasTheExpectedValues()
     {
-        $request = new Request('GET', '', self::TEST_HEADERS);
+        $request = new Request('GET', '', self::$TEST_HEADERS);
         $httpHeaders = HttpHeaders::fromRequest($request);
 
         foreach ($httpHeaders as $key => $value) {
